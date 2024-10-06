@@ -35,3 +35,14 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git checkout gh-pages
+          git rm -r --cached .
+          cp -r problems/* .
+          git add .
+          git commit -m "Deploy changes to GitHub Pages" || echo "No changes to deploy"
+          git push origin gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
