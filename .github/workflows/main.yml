@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # 获取所有历史记录
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -36,9 +38,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check for gh-pages branch
+        run: |
+          git fetch origin
+          git branch -a
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create gh-pages branch if it doesn't exist
+        run: |
+          git fetch origin
+          if git show-ref --verify --quiet refs/heads/gh-pages; then
+            git checkout gh-pages
+          else
+            git checkout -b gh-pages
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to GitHub Pages
         run: |
-          git checkout gh-pages
           git rm -r --cached .
           cp -r problems/* .
           git add .
