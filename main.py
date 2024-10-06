@@ -59,7 +59,7 @@ for line in tqdm(lines, desc="生成中", unit="题"):
     content = f"""---
 diff: {difficulty}
 pid: {pid}
-name: {title}
+name: "{title}"
 tag: {problem['tags']}
 ---
 # {title}
