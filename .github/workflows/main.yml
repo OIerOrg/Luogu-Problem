@@ -43,8 +43,6 @@ jobs:
           git fetch origin
           git branch -a
 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create gh-pages branch if it doesn't exist
         run: |
           git fetch origin
@@ -53,8 +51,12 @@ jobs:
           else
             git checkout -b gh-pages
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull remote changes
+        run: |
+          git fetch origin
+          git merge origin/gh-pages || echo "No changes to merge"
+
       - name: Deploy to GitHub Pages
         run: |
           git rm -r --cached .
