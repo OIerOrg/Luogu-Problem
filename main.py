@@ -57,9 +57,10 @@ for line in tqdm(lines, desc="生成中", unit="题"):
 
     # 创建 Markdown 文件的内容
     content = f"""---
+title: "{title}"
+layout: "post"
 diff: {difficulty}
 pid: {pid}
-name: "{title}"
 tag: {problem['tags']}
 ---
 # {title}
