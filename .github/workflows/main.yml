@@ -18,11 +18,12 @@ jobs:
         run: |
           while IFS= read -r file; do
               if [ -e "$file" ]; then
-                  echo "Will delete: $file"
+                  echo "Deleting: $file"
+                  rm -rf "$file" || echo "Failed to delete: $file"
               else
                   echo "File not found: $file"
               fi
-          done < <(grep -v '^#' _.gitignore | grep -v '^$')
+          done < <(grep -v '^#' .gitignore | grep -v '^$')
 
 
       - name: Set up Python
