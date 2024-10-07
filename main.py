@@ -91,6 +91,6 @@ usemathjax: true
         content += f"## 题目翻译\n\n{problem['translation']}\n"
 
     # 写入 Markdown 文件
-    filename = f"problems/{pid}.md"
+    filename = f"_posts/{pid}.md"
     with open(filename, "w", encoding="utf-8") as md_file:
         md_file.write(content)
