@@ -18,7 +18,7 @@ jobs:
         run: |
           while IFS= read -r file; do
             rm -rf "$file"
-          done < <(grep -v '^#' .gitignore | grep -v '^$')
+          done < <(grep -v '^#' _.gitignore | grep -v '^$')
 
       - name: Set up Python
         uses: actions/setup-python@v2
