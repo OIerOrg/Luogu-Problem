@@ -17,8 +17,13 @@ jobs:
       - name: Remove ignored files
         run: |
           while IFS= read -r file; do
-            rm -rf "$file"
-          done < <(grep -v '^#' _.gitignore | grep -v '^$')
+              if [ -e "$file" ]; then
+                  echo "Will delete: $file"
+              else
+                  echo "File not found: $file"
+              fi
+          done < <(grep -v '^#' .gitignore | grep -v '^$')
+
 
       - name: Set up Python
         uses: actions/setup-python@v2
