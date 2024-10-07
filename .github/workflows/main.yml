@@ -16,7 +16,10 @@ jobs:
           fetch-depth: 0  # 获取所有历史记录
       - name: Remove ignored files
         run: |
-            git ls-files -o --exclude-standard | xargs rm -rf
+          while IFS= read -r file; do
+            rm -rf "$file"
+          done < <(grep -v '^#' .gitignore | grep -v '^$')
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
