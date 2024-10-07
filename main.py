@@ -34,7 +34,7 @@ difficulty_mapping = {
 }
 
 # 创建一个文件夹用来存放题目
-os.makedirs("problems", exist_ok=True)
+os.makedirs("_posts", exist_ok=True)
 
 # 读取 NDJSON 文件
 with open("latest.ndjson", "r", encoding="utf-8") as file:
