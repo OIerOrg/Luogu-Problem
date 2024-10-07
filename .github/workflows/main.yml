@@ -22,7 +22,7 @@ jobs:
               else
                   echo "File not found: $file"
               fi
-          done < <(grep -v '^#' .gitignore | grep -v '^$')
+          done < <(grep -v '^#' _.gitignore | grep -v '^$')
 
 
       - name: Set up Python
