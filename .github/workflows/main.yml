@@ -14,7 +14,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0  # 获取所有历史记录
-
+      - name: Remove ignored files
+        run: |
+          git ls-files -i --exclude-from=.gitignore | xargs rm -rf
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
